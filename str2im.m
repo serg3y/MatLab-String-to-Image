@@ -18,7 +18,7 @@ function [I,A,H,W] = str2im(str,pad,varargin)
 % BackgroundColor     - {w} y m c r g b k [r g b]
 % Color               - {k} y m c r g b w [r g b]
 % FontSize            - {16} positive number
-% FontUnits           - {points} pixels normalized inches centimeters
+% FontUnits           - {points} pixels normalized inches centimetres
 % FontWeight          - {normal} bold light demi
 % FontAngle           - {normal} italic oblique
 % FontName            - Helvetica FixedWidth (see listfonts)
@@ -69,7 +69,7 @@ function [I,A,H,W] = str2im(str,pad,varargin)
 
 %Issues:
 % There appears to be a bug in getframe in R2022a. The returned frame size
-% is often not the requesed size.
+% is often not the requested size.
 % clc,close all
 % figure(1),set(1,'Position',[0 108.2     560 420  ]),size(frame2im(getframe(1,[0 0 100 200])))
 % figure(2),set(2,'Position',[0 108.20001 560 420  ]),size(frame2im(getframe(2,[0 0 100 200])))
@@ -94,11 +94,11 @@ try %text properties and pad size might be invalid
     txt = text('Parent',axe,'Interpreter','none','FontSize',16,'String',str,varargin{:},'Units','pixels'); %display text
     drawnow %has to be done betwbefore get extents, for some text sizes
     ext = ceil(get(txt,'Extent')); %get text bounding box location
-    pos = get(txt,'Position'); %get c current possition
+    pos = get(txt,'Position'); %get c current position
     set(txt,'Position',[1+pos(1)-ext(1)+pad(1) 1+pos(2)-ext(2)+pad(4)]); %move text to bottom left corner, +1pix !???
     W = ceil(ext(3))+pad(1)+pad(2)+1; %text width
     H = ceil(ext(4))+pad(3)+pad(4)+1; %text height
-    set(fig,'Position',[0 0 W H]) %possition figure on screen, text must fit in figure & figure must fit in screen
+    set(fig,'Position',[0 0 W H]) %position figure on screen, text must fit in figure & figure must fit in screen
     drawnow
     pos = get(fig,'Position');
     if any([W H]-pos(3:4)>1)
@@ -131,7 +131,7 @@ if nargout>1 %generate alpha if needed
     end
     A = rgb2gray(255-A); %background alpha channel
 end
-[H,W,~] = size(I); %get frame is bugged, does not caputre requested size!
+[H,W,~] = size(I); %get frame is bugged, does not capture requested size!
 if size(I,2)~=W || size(I,1)~=H
     warning('str2im:TextLargerThenScreen','Text image was cropped because it did not fit on screen.')
 end
