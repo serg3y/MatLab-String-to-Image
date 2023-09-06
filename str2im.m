@@ -18,7 +18,7 @@ function [I,A,H,W] = str2im(str,pad,varargin)
 % BackgroundColor     - {w} y m c r g b k [r g b]
 % Color               - {k} y m c r g b w [r g b]
 % FontSize            - {16} positive number
-% FontUnits           - {points} pixels normalized inches centimetres
+% FontUnits           - {points} pixels normalized inches centimeters
 % FontWeight          - {normal} bold light demi
 % FontAngle           - {normal} italic oblique
 % FontName            - Helvetica FixedWidth (see listfonts)
